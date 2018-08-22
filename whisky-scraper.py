@@ -7,7 +7,7 @@ import pytz
 
 # Twilio API credentials
 twilio_sid = 'AC7852bc7c5f9a918607ab6353a64624b9'
-twilio_token = 'ef0159ff649b8e3b46a142dac7b7945c'
+twilio_token = 'XXXXXXX'
 twilio_phone_number = '+18317038528'
 destination_phone_number = '+16508042890'
 
