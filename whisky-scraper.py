@@ -46,7 +46,7 @@ for row in rows:
 	
 	# choose whether to write spirits into spirits to alert dictionary
 	if "Sold Out" not in cols[5] and ("Midleton" in cols[3] or "limit" in cols[3] or "Sazerac" in cols[3] or "Larue" in cols[3] or "Stagg" in cols[3] or "Handy" in cols[3] or cols[6] == '1' or cols[6] == '2' or cols[6] == '3'):
-		if cols[0] >= now_aware + datetime.timedelta(hours = -2):
+		if cols[0] >= now_aware + datetime.timedelta(hours = -5):
 			spirits_to_alert[cols[3]] = [cols[0],cols[4],cols[5],cols[6]]
 			list_of_spirits.append(cols[3] + " -- " + cols[4])
 
