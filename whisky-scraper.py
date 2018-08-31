@@ -71,3 +71,5 @@ if len(list_of_spirits) > 0:
 if len(list_of_spirits) == 0:
 	print(" ")
 	print("Nothing to see here!")
+
+exit()
