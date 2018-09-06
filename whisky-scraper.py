@@ -53,13 +53,13 @@ for row in rows:
 
 	# choose whether to write spirits into list of spirits to alert on based on selection criteria
 	if cols[0] >= now_aware + datetime.timedelta(minutes = -30): # posted in last 30 mins
-		#if 'Sold Out' not in cols[5]:
-		if 'limit' in cols[3]: # "limit" is in the name - usually this is a bottle limit
-			list_of_spirits.append(cols[3] + " -- " + cols[4])
-		elif any(i in cols[3] for i in search_words): # if any of the search_words show up in the name
-			list_of_spirits.append(cols[3] + " -- " + cols[4])
-		elif any(x in cols[6] for x in ['1','2','3']): # if the allocation (bottle limit) is 1, 2, or 3
-			list_of_spirits.append(cols[3] + " -- " + cols[4])
+		if 'Sold Out' not in cols[5]:
+			if 'limit' in cols[3]: # "limit" is in the name - usually this is a bottle limit
+				list_of_spirits.append(cols[3] + " -- " + cols[4])
+			elif any(i in cols[3] for i in search_words): # if any of the search_words show up in the name
+				list_of_spirits.append(cols[3] + " -- " + cols[4])
+			elif any(x in cols[6] for x in ['1','2','3']): # if the allocation (bottle limit) is 1, 2, or 3
+				list_of_spirits.append(cols[3] + " -- " + cols[4])
 
 
 ####################
@@ -81,4 +81,3 @@ if len(list_of_spirits) > 0:
 
 if len(list_of_spirits) == 0:
 	print("Nothing to see here!")
-	
