@@ -9,8 +9,8 @@ from bs4 import BeautifulSoup
 from twilio.rest import Client
 
 # Twilio API credentials
-twilio_sid = 'AC7852bc7c5f9a918607ab6353a64624b9'
-twilio_token = 'ef0159ff649b8e3b46a142dac7b7945c'
+twilio_sid = 'TWILIO_SID' # stored in config vars in Heroku
+twilio_token = 'TWILIO_SECRET'
 client = Client(twilio_sid,twilio_token) # stage the Twilio API call
 twilio_phone_number = '+18317038528'
 #destination_phone_numbers = ['+16508042890','+18313595807'] # people to alert
