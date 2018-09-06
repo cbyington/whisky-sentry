@@ -76,7 +76,7 @@ if len(list_of_spirits) > 0:
 	print(message) 
 
 	for phone_number in destination_phone_numbers:
-		#client.messages.create(to=destination_phone_numbers[i],from_=twilio_phone_number,body=message)
+		client.messages.create(to=destination_phone_numbers[i],from_=twilio_phone_number,body=message)
 		print("Sent SMS to " + str(phone_number))
 
 if len(list_of_spirits) == 0:
