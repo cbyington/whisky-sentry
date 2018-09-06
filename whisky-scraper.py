@@ -2,6 +2,7 @@
 ## Libraries & Script Parameters ##
 ####################################
 
+import os
 import datetime 
 import pytz
 from urllib.request import urlopen
@@ -9,8 +10,8 @@ from bs4 import BeautifulSoup
 from twilio.rest import Client
 
 # Twilio API credentials
-twilio_sid = 'TWILIO_SID' # stored in config vars in Heroku
-twilio_token = 'TWILIO_SECRET'
+twilio_sid = os.environ.get('TWILIO_SID') # stored in config vars in Heroku
+twilio_token = os.environ.get('TWILIO_SECRET')
 client = Client(twilio_sid,twilio_token) # stage the Twilio API call
 twilio_phone_number = '+18317038528'
 #destination_phone_numbers = ['+16508042890','+18313595807'] # people to alert
