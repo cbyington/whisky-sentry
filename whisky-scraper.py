@@ -15,7 +15,6 @@ twilio_token = os.environ.get('TWILIO_SECRET')
 client = Client(twilio_sid,twilio_token) # stage the Twilio API call
 twilio_phone_number = '+18317038528'
 destination_phone_numbers = ['+16508042890','+18313595807'] # people to alert
-#destination_phone_numbers = ['+16508042890']
 
 # URL of page to scrape
 page = 'https://www.klwines.com/productfeed?&productTypeCD=10&regionCD=&minprice=&maxprice=&page=1'
@@ -26,6 +25,11 @@ search_words = ['Sazerac',
 		'Stagg',
 		'Handy',
 		'K&L Exclusive']
+
+# any keyword in this list will result in the spirit not triggering an alert (even if it meets other criteria)
+blacklist_words = ['Rum',
+		   'Vodka',
+		   'Armagnac']
 
 
 ####################
@@ -56,12 +60,13 @@ for row in rows:
 	# choose whether to write spirits into list of spirits to alert on based on selection criteria
 	if cols[0] >= now_aware + datetime.timedelta(minutes = -30): # posted in last 30 mins
 		if 'Sold Out' not in cols[5]:
-			if 'limit' in cols[3]: # "limit" is in the name - usually this is a bottle limit
-				list_of_spirits.append(cols[3] + " -- " + cols[4])
-			elif any(i in cols[3] for i in search_words): # if any of the search_words show up in the name
-				list_of_spirits.append(cols[3] + " -- " + cols[4])
-			elif any(x in cols[6] for x in ['1','2','3']): # if the allocation (bottle limit) is 1, 2, or 3
-				list_of_spirits.append(cols[3] + " -- " + cols[4])
+			if not any(j in cols[3] for j in blacklist_words): # exclude blacklisted spirits
+				if 'limit' in cols[3]: # "limit" is in the name - usually this is a bottle limit
+					list_of_spirits.append(cols[3] + " -- " + cols[4])
+				elif any(i in cols[3] for i in search_words): # if any of the search_words show up in the name
+					list_of_spirits.append(cols[3] + " -- " + cols[4])
+				elif any(x in cols[6] for x in ['1','2','3']): # if the allocation (bottle limit) is 1, 2, or 3
+					list_of_spirits.append(cols[3] + " -- " + cols[4])
 
 
 ####################
