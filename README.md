@@ -8,7 +8,9 @@ https://www.klwines.com/productfeed?&productTypeCD=10&regionCD=&minprice=&maxpri
 ## Overview
 Retrieves new product list from the link above every 10 minutes and sends an alert text message if any products meet the following criteria:
 * Not sold out AND
-* Posted in the last half hour (to avoid sending multiple alerts on an item unnecessarily) AND at least one of the following:
+* Not vodka, rum, or armagnac AND
+* Posted in the last half hour (to avoid sending multiple alerts on an item unnecessarily) AND 
+* At least one of the following:
   * Product name contains "limit" (usually indicates a bottle limit and consequently a rare or special item)
   * Product allocation is three or fewer (same concept as bottle limit above)
   * Product name contains "Sazerac," "Stagg," "Handy," or "Larue"
