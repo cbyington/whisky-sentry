@@ -58,7 +58,7 @@ for row in rows:
 	cols[0] = utc_tz.localize(datetime.datetime.strptime(cols[0],'%m/%d/%Y %I:%M %p'))
 
 	# choose whether to write spirits into list of spirits to alert on based on selection criteria
-	if cols[0] >= now_aware + datetime.timedelta(minutes = -30): # posted in last 30 mins
+	if cols[0] >= now_aware + datetime.timedelta(minutes = -19): # posted in last 20 mins
 		if 'Sold Out' not in cols[5]:
 			if not any(j in cols[3] for j in blacklist_words): # exclude blacklisted spirits
 				if 'limit' in cols[3]: # "limit" is in the name - usually this is a bottle limit
