@@ -5,16 +5,20 @@
 import os
 import datetime 
 import pytz
-from urllib.request import urlopen
+import requests
 from bs4 import BeautifulSoup
 from twilio.rest import Client
+import random
 
 # Twilio API credentials
 twilio_sid = os.environ.get('TWILIO_SID') # stored in config vars in Heroku
 twilio_token = os.environ.get('TWILIO_SECRET')
 client = Client(twilio_sid,twilio_token) # stage the Twilio API call
+
+# phone #s
 twilio_phone_number = '+18317038528'
 destination_phone_numbers = ['+16508042890','+18313595807'] # people to alert
+error_phone_number = '+16508042890' # phone # to which to send runtime error notifications
 
 # URL of page to scrape
 page = 'https://www.klwines.com/productfeed?&productTypeCD=10&regionCD=&minprice=&maxprice=&page=1'
@@ -31,13 +35,35 @@ blacklist_words = ['Rum',
 		   'Vodka',
 		   'Armagnac']
 
+# list of user agents to choose from randomly when opening the K&L website
+user_agents = ['Mozilla/5.0',
+			'Chrome/44.0',
+			'Chrome/45.0',
+			'Safari/537',
+			'Safari/536'
+			'Safari/535']
+
 
 ####################
 ## Whisky Parsing ##
 ####################
 
-# read page HTML contents into a BS object
-soup = BeautifulSoup(urlopen(page),'html.parser')
+# choose a random user-agent and define header user-agent to send in the web scraping request to avoid bot blockers
+random_user_agent = random.SystemRandom().choice(user_agents)
+headers = {'user-agent': random_user_agent}
+
+# read page HTML contents into a BS object.  send Chris an SMS if the app is blocked by K&L (happened before)
+try: 
+	soup = BeautifulSoup(requests.get(page, headers=headers).content,'html.parser')
+
+except requests.exceptions.HTTPError as e:
+	print("Request error!")
+
+	# send an SMS to Chris' cell phone to let him know of the error
+	error_message = "There has been an HTTP request error with whisky-sentry"
+	client.messages.create(to=error_phone_number,from_=twilio_phone_number,body=error_message)
+
+	exit()
 
 # grab the data table from within the HTML object.  this is the info we're interested in inspecting
 rows = soup.find('tbody').find_all('tr')
