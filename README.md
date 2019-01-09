@@ -1,4 +1,4 @@
-# whisky-sentry
+# Whisky Sentry
 Rare and Special Whisky Detection and Alerting as-a-Service (RaSWDaAaS). 
 
 A simple web scraper of K&L Wine's new products page (link below).  Alerts user via text message when new whisky meets user-specified parameters, allowing you to quickly purchase low-inventory or high-interest items before they sell out.
