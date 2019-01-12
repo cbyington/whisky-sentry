@@ -27,5 +27,4 @@ Submit a PR to add your phone # to the distribution list or to change the list o
 * A deep, haunting thirst for whisky (must be installed in your local flesh prison environment)
 
 ## Known Issues
-* Using Twilio free credits to send texts currently.  They will run out eventually.
 * Product alerts may be duplicated once or twice in some cases.  This is because I've specified the alerts to send for products uploaded in the last 30 minutes, but the job runs every 10 minutes.  I've set this overlap period because Heroku Scheduler (used to run the job) is a bit sporadic in its job timing and there's sometimes a 15 or even 20 minute gap between job runs.  Setting the 30 minute lookback ensures we never miss a new whisky :100:.
