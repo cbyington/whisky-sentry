@@ -9,6 +9,7 @@ import requests
 from bs4 import BeautifulSoup
 from twilio.rest import Client
 import random
+import psycopg2
 
 # Twilio API credentials
 twilio_sid = os.environ.get('TWILIO_SID') # stored in config vars in Heroku
