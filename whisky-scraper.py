@@ -54,7 +54,6 @@ user_agents = ['Mozilla/5.0',
 
 # functions to write to and read from a database of alerts we've already sent; this ensures we don't double-send notifications
 def insert_alert(date,sku,name,price,quantity_on_hand,allocation):
-	#conn=psycopg2.connect("dbname='chris-test-1' user='postgres' host='localhost' port='5432'")
 	conn=psycopg2.connect(DATABASE_URL, sslmode='require')
 	cur=conn.cursor()
 	cur.execute("INSERT INTO alerts VALUES(%s,%s,%s,%s,%s,%s)",(date,sku,name,price,quantity_on_hand,allocation))
@@ -62,7 +61,6 @@ def insert_alert(date,sku,name,price,quantity_on_hand,allocation):
 	conn.close()
 
 def read_alerts(date):
-	#conn=psycopg2.connect("dbname='chris-test-1' user='postgres' host='localhost' port='5432'")
 	conn=psycopg2.connect(DATABASE_URL, sslmode='require')
 	cur=conn.cursor()
 	cur.execute("SELECT DISTINCT sku FROM alerts WHERE date >= %s",[date])
