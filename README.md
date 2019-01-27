@@ -23,6 +23,7 @@ Submit a PR to add your phone # to the distribution list or to change the list o
 * beautifulsoup4 4.6.3
 * pytz 2018.5
 * twilio 6.16.2
+* psycopg2 2.7.6.1
 * A Twilio account, Twilio phone number, and API credentials (test account is free) 
 * A deep, haunting thirst for whisky (must be installed in your local flesh prison environment)
 
