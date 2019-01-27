@@ -28,24 +28,13 @@ error_phone_number = '+16508042890' # phone # to which to send runtime error not
 page = 'https://www.klwines.com/productfeed?&productTypeCD=10&regionCD=&minprice=&maxprice=&page=1'
 
 # list of keywords to be matched to product name.  any of these will trigger a text to be sent
-search_words = ['Sazerac',
-		'Larue',
-		'Stagg',
-		'Handy',
-		'K&L Exclusive']
+search_words = ['Sazerac','Larue','Stagg','Handy','K&L Exclusive']
 
 # any keyword in this list will result in the spirit not triggering an alert (even if it meets other criteria)
-blacklist_words = ['Rum',
-		   'Vodka',
-		   'Armagnac']
+blacklist_words = ['Rum','Vodka','Armagnac']
 
 # list of user agents to choose from randomly when opening the K&L website
-user_agents = ['Mozilla/5.0',
-			'Chrome/44.0',
-			'Chrome/45.0',
-			'Safari/537',
-			'Safari/536'
-			'Safari/535']
+user_agents = ['Mozilla/5.0','Chrome/44.0','Chrome/45.0','Safari/537','Safari/536','Safari/535']
 
 
 ########################
@@ -82,9 +71,7 @@ try:
 	soup = BeautifulSoup(requests.get(page, headers=headers).content,'html.parser')
 
 except requests.exceptions.HTTPError as e:
-	print("Request error!")
-
-	# send an SMS to Chris' cell phone to let him know of the error
+	print("Request error!") # send an SMS to Chris' cell phone to let him know of the error
 	error_message = "There has been an HTTP request error with whisky-sentry"
 	client.messages.create(to=error_phone_number,from_=twilio_phone_number,body=error_message)
 
@@ -118,8 +105,8 @@ for row in rows: # loop through each row in the table, cut out whitespace for ea
 	# cast scraped datetimes from naive to aware (UTC). datetimes are rendered (in browser) in PT but scraped in UTC :shrug:
 	cols[0] = utc_tz.localize(datetime.datetime.strptime(cols[0],'%m/%d/%Y %I:%M %p'))
 
-	# choose whether to write spirits into list of spirits to alert on based on selection criteria
-	if 'Sold Out' not in cols[5]: # note to self on fields: 0 = time. 1 = sku. 3 = name. 4 = price. 5. q on hand. 6 = allocation.  
+	# choose whether to write spirits into list of spirits to alert on based on selection criteria.  note to self on fields: 0 = time. 1 = sku. 3 = name. 4 = price. 5. q on hand. 6 = allocation.  
+	if 'Sold Out' not in cols[5]: # TODO: can these exclusion lists be put on one line?
 		if not any(b in cols[1] for b in sku_blacklist): # check if have alerted on the SKU in the last 60m.  if so, don't send another alert
 			if cols[0] >= now_aware + datetime.timedelta(minutes = -30): # require the product was posted in last 30 mins
 				if not any(j in cols[3] for j in blacklist_words): # exclude blacklisted spirits
