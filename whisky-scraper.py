@@ -21,7 +21,7 @@ DATABASE_URL = os.environ['DATABASE_URL']
 
 # phone #s
 twilio_phone_number = '+18317038528'
-destination_phone_numbers = ['+16508042890'] # people to alert
+destination_phone_numbers = ['+16508042890','+18313595807'] # people to alert
 error_phone_number = '+16508042890' # phone # to which to send runtime error notifications
 
 # URL of page to scrape
