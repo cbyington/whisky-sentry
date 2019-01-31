@@ -28,7 +28,7 @@ error_phone_number = '+16508042890' # phone # to which to send runtime error not
 page = 'https://www.klwines.com/productfeed?&productTypeCD=10&regionCD=&minprice=&maxprice=&page=1'
 
 # list of keywords to be matched to product name.  any of these will trigger a text to be sent
-search_words = ['Sazerac','Larue','Stagg','Handy','K&L Exclusive']
+search_words = ['Sazerac','Larue','Stagg','Handy','K&L Exclusive','Brouwerij Drie Fonteinen','Brasserie Cantillon','Bottle Logic','Modern Times']
 
 # any keyword in this list will result in the spirit not triggering an alert (even if it meets other criteria)
 blacklist_words = ['Rum','Vodka','Armagnac']
