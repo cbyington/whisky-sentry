@@ -12,7 +12,8 @@ Retrieves new product list from the link above every 10 minutes and sends an ale
 * At least one of the following:
   * Product name contains "limit" (usually indicates a bottle limit and consequently a rare or special item)
   * Product allocation is three or fewer (same concept as bottle limit above)
-  * Product name contains "Sazerac," "Stagg," "Handy," "Larue," "K&L Exclusive," or "Single Barrel"
+  * Whisky: product name contains "Sazerac," "Stagg," "Handy," "Larue," "K&L Exclusive," or "Single Barrel"
+  * Beer: product name comtains "Brouwerij Drie Fonteinen," "Brasserie Cantillon," "Bottle Logic," "Modern Times"
  
 ## Requesting Changes
 Submit a PR to add your phone # to the distribution list or to change the list of product names on which an alert is generated.
