@@ -129,6 +129,8 @@ if len(list_of_spirits) > 0: # only send if there is something to send
 	for phone_number in destination_phone_numbers:
 		client.messages.create(to=phone_number,from_=twilio_phone_number,body=message)
 		print("Sent SMS to " + str(phone_number))
+	exit()
 
 if len(list_of_spirits) == 0:
 	print("Nothing to see here!")
+	exit()
