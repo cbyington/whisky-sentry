@@ -31,7 +31,7 @@ page = 'https://www.klwines.com/productfeed?&productTypeCD=10&regionCD=&minprice
 search_words = ['Sazerac','Larue','Stagg','Handy','K&L Exclusive','Single Barrel','single barrel','Brouwerij Drie Fonteinen','Brasserie Cantillon','Bottle Logic','Modern Times']
 
 # any keyword in this list will result in the spirit not triggering an alert (even if it meets other criteria)
-blacklist_words = ['Rum','Vodka','Armagnac','Irish Whiskey','Black Maple Hill','Jos A. Magnus']
+blacklist_words = ['Rum','Vodka','Armagnac','Irish Whiskey','Black Maple Hill','Jos A. Magnus','Westland','Glendronach','Caol Ila']
 
 # list of user agents to choose from randomly when opening the K&L website
 user_agents = ['Mozilla/5.0','Chrome/44.0','Chrome/45.0','Safari/537','Safari/536','Safari/535']
